@@ -53,11 +53,11 @@ options = parse_arguments!
 STDERR.puts options if options[:verbose]
 
 require 'pg'
-CONNECTION = PG.connect(dbname: ARGV.last)
+CONNECTION = PG.connect(ARGV.last)
 
 include Pgerd
 
-database = Database.new(ARGV.first)
+database = Database.new(ARGV.first, CONNECTION)
 erd = Erd.new(database, options)
 
 puts erd.diagram.output(options[:format] => String)

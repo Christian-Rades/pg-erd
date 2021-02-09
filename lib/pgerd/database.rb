@@ -6,8 +6,9 @@ module Pgerd
     attr_reader :name
     TABLES_TO_IGNORE = %w(ar_internal_metadata schema_migrations)
 
-    def initialize(name)
+    def initialize(name, connection)
       @name = name
+      @connection = connection
     end
 
     def all_table_names
